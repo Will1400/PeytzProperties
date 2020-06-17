@@ -10,7 +10,6 @@ class HomePageController extends AbstractController
     /**
      *  @Route("/", name="home")
      */
-    
     public function Index()
     {
         return $this->render("index.html.twig");
