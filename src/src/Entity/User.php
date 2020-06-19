@@ -24,6 +24,11 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @ORM\Column(type="string", length=180, unique=false)
+     */
+    private $username;
+
+    /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -58,7 +63,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
     }
 
     /**
@@ -110,5 +115,12 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
     }
 }
