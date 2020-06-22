@@ -29,6 +29,17 @@ class RegisterFormController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
 
+            $repository = $entityManager->getRepository(User::class);
+
+            $newUser = $repository->findOneBy(['email' => $user->getEmail(),]);
+
+            if (!is_null($newUser)) {
+                return $this->render("security/register.html.twig", [
+                    "form" => $form->createView(),
+                    "error" => "Email already in use."
+                ]);
+            }
+
             $entityManager->persist($user);
             $entityManager->flush();
 
