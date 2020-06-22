@@ -43,7 +43,6 @@ class RegisterFormController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-
             return $this->redirect($this->generateUrl("app_login"));
         }
 
