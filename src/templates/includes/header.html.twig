@@ -10,11 +10,15 @@
 				<a {% if app.request.attributes.get('_route') starts with 'lucky_number' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/lucky/number">Lucky Number</a>
 			</li>
 			<li class="nav-item">
-				<a{% if app.request.attributes.get('_route') starts with 'sell_property' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/sell/property">Sell Property</a>
+				<a {% if app.request.attributes.get('_route') starts with 'sell_property' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/sell/property">Sell Property</a>
 			</li>
 		</ul>
 		<div class="nav item vw-25 navbar-nav">
-			<a{% if app.request.attributes.get('_route') starts with 'profile' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/profile" >profile</a>
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				<p class="text-light nav-link">Hi
+					{{ app.user.username }}</p>
+				{%endif%}
+				<a {% if app.request.attributes.get('_route') starts with 'profile' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/profile">profile</a>
+			</div>
 		</div>
-	</div>
-</nav>
+	</nav>
