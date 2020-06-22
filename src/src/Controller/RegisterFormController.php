@@ -44,9 +44,9 @@ class RegisterFormController extends AbstractController
             $entityManager->flush();
 
 
-            return $this->redirectToRoute("/login");
+            return $this->redirect($this->generateUrl("app_login"));
         }
 
-        return $this->render("security/register.html.twig", ["form" => $form->createView()]);
+        return $this->render("security/register.html.twig", ["form" => $form->createView(), "error" => ""]);
     }
 }
