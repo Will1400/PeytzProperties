@@ -17,8 +17,11 @@
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				<p class="text-light nav-link">Hi
 					{{ app.user.username }}</p>
+				<a {% if app.request.attributes.get('_route') starts with 'profile' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/profile">Profile</a>
+				{%else%}
+				<a {% if app.request.attributes.get('_route') starts with 'login' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/login">Login</a>
+				
 				{%endif%}
-				<a {% if app.request.attributes.get('_route') starts with 'profile' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/profile">profile</a>
 			</div>
 		</div>
 	</nav>
