@@ -1,7 +1,38 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	<h1>
-		Homepage!
-	</h1>
+	{% if villas|length == 0 %}
+		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+			<a class="btn btn-primary" href="/property/sell">Sell Property</a>
+		{% else %}
+			<h2>No properties for sale</h2>
+		{% endif %}
+	{% else %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Adress</th>
+					<th scope="col">Price</th>
+					<th scope="col">Garden Area</th>
+					<th scope="col">Area</th>
+					<th scope="col">For Sale</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in villas %}
+					<tr>
+						<th scope="row">{{item.getAddress}}</th>
+						<td>{{item.getPrice}}</td>
+						<td>{{item.getGardenArea}}</td>
+						<td>{{item.getArea}}</td>
+						<td>{{item.getForSale}}</td>
+						<td>
+							<a class="btn btn-primary" href="/property/edit">Edit</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endif %}
+
 {% endblock %}

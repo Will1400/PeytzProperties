@@ -14,6 +14,11 @@ abstract class AbstractProperty
      */
     protected $id;
 
+      /**
+     * @ORM\Column(type="integer")
+     */
+    protected $ownerId;
+
     /**
      * @ORM\Column(type="string", length=180)
      */
@@ -38,6 +43,17 @@ abstract class AbstractProperty
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getOwnerId(): ?int
+    {
+        return $this->ownerId;
+    }
+    public function setOwnerId($ownerId): self
+    {
+        $this->ownerId = $ownerId;
+
+        return $this;
     }
 
     public function getAddress(): ?string
