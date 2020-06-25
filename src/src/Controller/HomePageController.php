@@ -23,8 +23,12 @@ class HomePageController extends AbstractController
         $entityManager = $this->getDoctrine();
         $villaRepository = $entityManager->getRepository(Villa::class);
 
-
-        $villas = $villaRepository->findBy(["ownerId" => $userId]);
+        if ($userId == -1) {
+            $villas = $villaRepository->findBy(["forSale" => 1]);
+        }
+        else {
+            $villas = $villaRepository->findBy(["ownerId" => $userId]);
+        }
 
         return $this->render("index.html.twig", [
             "villas" => $villas,

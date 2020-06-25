@@ -26,9 +26,11 @@
 						<td>{{item.getGardenArea}}</td>
 						<td>{{item.getArea}}</td>
 						<td>{{item.getForSale}}</td>
-						<td>
-							<a class="btn btn-primary" href="/property/edit">Edit</a>
-						</td>
+						{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+							<td>
+								<a class="btn btn-primary" href="/property/edit">Edit</a>
+							</td>
+						{% endif %}
 					</tr>
 				{% endfor %}
 			</tbody>
