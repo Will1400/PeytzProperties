@@ -28,7 +28,7 @@
 						<td>{{item.getForSale}}</td>
 						{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
 							<td>
-								<a class="btn btn-primary" href="/property/edit">Edit</a>
+								<a class="btn btn-primary" href="/property/edit/{{item.id}}">Edit</a>
 							</td>
 						{% endif %}
 					</tr>

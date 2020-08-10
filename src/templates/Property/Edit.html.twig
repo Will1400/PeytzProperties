@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block title %}Edit
+{% endblock %}
+
+{% block body %}
+<p class="text-danger">{{ error }}</p>
+
+{% if form is defined %}
+{{ form(form) }}
+{% endif %}
+{% endblock %}
