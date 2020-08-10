@@ -27,14 +27,13 @@ class EditPropertyController extends AbstractController
 
         if (is_null($villa)) {
             $villa = new Villa();
-            return $this->render("Property/Edit.html.twig", ["form" => "", "error" => "No villa found"]);
+            return $this->render("Property/Edit.html.twig", ["error" => "No villa found"]);
         }
 
         $form = $this->createForm(VillaType::class, $villa);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->merge($villa);
             $entityManager->flush();
             return $this->redirect($this->generateUrl("home"));
         }
