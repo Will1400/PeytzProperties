@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Villa;
-use App\Form\VillaType;
+use App\Form\PropertyType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,32 +10,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class EditPropertyController extends AbstractController
 {
     /**
-     *  @Route("/property/edit/{propertyId}", name="property_edit")
+     *  @Route("/property/edit/{propertyType}/{propertyId}", name="property_edit")
      */
-    public function Index(Request $request, string $propertyId = "default")
+    public function Index(Request $request, string $propertyType = "default", string $propertyId = "default")
     {
-        if (!is_numeric($propertyId)) {
-            return $this->render("Property/Edit.html.twig", ["error" => "No villa found"]);
+        if (!is_numeric($propertyId) && !in_array($propertyType, ["Villa", "Apartment", "Condo", false])) {
+            return $this->render("Property/Edit.html.twig", ["error" => "Property not found"]);
         }
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $repository = $entityManager->getRepository(Villa::class);
-        $villa = $repository->findOneBy(["id" => $propertyId]);
+        $repository = $entityManager->getRepository("App\Entity\\" . $propertyType);
+        $property = $repository->findOneBy(["id" => $propertyId]);
 
-        if (is_null($villa)) {
-            $villa = new Villa();
-            return $this->render("Property/Edit.html.twig", ["error" => "No villa found"]);
+        if (is_null($property)) {
+            return $this->render("Property/Edit.html.twig", ["error" => "Property not found"]);
+        } else {
+            $form = $this->createForm(PropertyType::class, $property, ["propertyType" => $propertyType]);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->flush();
+                return $this->redirect($this->generateUrl("home"));
+            }
         }
-
-        $form = $this->createForm(VillaType::class, $villa);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-            return $this->redirect($this->generateUrl("home"));
-        }
-
         return $this->render("Property/Edit.html.twig", ["form" => $form->createView(), "error" => ""]);
     }
 }

@@ -8,13 +8,14 @@
 			<h2>No properties for sale</h2>
 		{% endif %}
 	{% else %}
+		<h2>Villas</h2>
 		<table class="table">
 			<thead>
 				<tr>
 					<th scope="col">Adress</th>
 					<th scope="col">Price</th>
-					<th scope="col">Garden Area</th>
 					<th scope="col">Area</th>
+					<th scope="col">Garden Area</th>
 					<th scope="col">For Sale</th>
 				</tr>
 			</thead>
@@ -23,12 +24,49 @@
 					<tr>
 						<th scope="row">{{item.getAddress}}</th>
 						<td>{{item.getPrice}}</td>
-						<td>{{item.getGardenArea}}</td>
 						<td>{{item.getArea}}</td>
+						<td>{{item.getGardenArea}}</td>
 						<td>{{item.getForSale}}</td>
 						{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
 							<td>
-								<a class="btn btn-primary" href="/property/edit/{{item.id}}">Edit</a>
+								<a class="btn btn-primary" href="/property/edit/Villa/{{item.id}}">Edit</a>
+							</td>
+						{% endif %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endif %}
+
+	{% if apartments|length == 0 %}
+		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+			<a class="btn btn-primary" href="/property/sell">Sell Property</a>
+		{% else %}
+			<h2>No properties for sale</h2>
+		{% endif %}
+	{% else %}
+		<h2>Apartments</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Adress</th>
+					<th scope="col">Price</th>
+					<th scope="col">Area</th>
+					<th scope="col">Balcony</th>
+					<th scope="col">For Sale</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in apartments %}
+					<tr>
+						<th scope="row">{{item.getAddress}}</th>
+						<td>{{item.getPrice}}</td>
+						<td>{{item.getArea}}</td>
+						<td>{{item.getBalcony}}</td>
+						<td>{{item.getForSale}}</td>
+						{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+							<td>
+								<a class="btn btn-primary" href="/property/edit/Apartment/{{item.id}}">Edit</a>
 							</td>
 						{% endif %}
 					</tr>
