@@ -2,108 +2,108 @@
 
 
 {% block body %}
-	{% if (villas|length == 0 and apartments|length == 0 and condos|length == 0) and is_granted('IS_AUTHENTICATED_FULLY') %}
-		<h2>No properties for sale</h2>
-		<a class="btn btn-primary" href="/property/sell">Sell Property</a>
-	{% endif %}
+{% if (villas|length == 0 and apartments|length == 0 and condos|length == 0) and is_granted('IS_AUTHENTICATED_FULLY') %}
+<h2>No properties for sale</h2>
+<a class="btn btn-primary" href="/property/sell">Sell Property</a>
+{% endif %}
 
-	{% if villas|length != 0 %}
-		<h2>Villas</h2>
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">Adress</th>
-					<th scope="col">Price</th>
-					<th scope="col">Area</th>
-					<th scope="col">Garden Area</th>
-					{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
-						<th scope="col">For Sale</th>
-					{% endif %}
-				</tr>
-			</thead>
-			<tbody>
-				{% for item in villas %}
-					<tr>
-						<th scope="row">{{item.getAddress}}</th>
-						<td>{{item.getPrice}}</td>
-						<td>{{item.getArea}}</td>
-						<td>{{item.getGardenArea}}</td>
-						{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
-							<td>{{item.getForSale}}</td>
-							<td>
-								<a class="btn btn-primary" href="/property/edit/Villa/{{item.id}}">Edit</a>
-							</td>
-						{% endif %}
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	{% endif %}
+{% if villas|length != 0 %}
+<h2>Villas</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Adress</th>
+			<th scope="col">Price</th>
+			<th scope="col">Area</th>
+			<th scope="col">Garden Area</th>
+			{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+			<th scope="col">For Sale</th>
+			{% endif %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in villas %}
+		<tr>
+			<th scope="row">{{item.getAddress}}</th>
+			<td>{{item.getPrice}}</td>
+			<td>{{item.getArea}}</td>
+			<td>{{item.getGardenArea}}</td>
+			{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+			<td>{{item.getForSale}}</td>
+			<td>
+				<a class="btn btn-primary" href="/property/edit/Villa/{{item.id}}">Edit</a>
+			</td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endif %}
 
-	{% if apartments|length != 0 %}
-		<h2>Apartments</h2>
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">Adress</th>
-					<th scope="col">Price</th>
-					<th scope="col">Area</th>
-					<th scope="col">Balcony</th>
-					{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
-						<th scope="col">For Sale</th>
-					{% endif %}
-				</tr>
-			</thead>
-			<tbody>
-				{% for item in apartments %}
-					<tr>
-						<th scope="row">{{item.getAddress}}</th>
-						<td>{{item.getPrice}}</td>
-						<td>{{item.getArea}}</td>
-						<td>{{item.getBalcony}}</td>
-						{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
-							<td>{{item.getForSale}}</td>
-							<td>
-								<a class="btn btn-primary" href="/property/edit/Apartment/{{item.id}}">Edit</a>
-							</td>
-						{% endif %}
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	{% endif %}
+{% if apartments|length != 0 %}
+<h2>Apartments</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Adress</th>
+			<th scope="col">Price</th>
+			<th scope="col">Area</th>
+			<th scope="col">Balcony</th>
+			{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+			<th scope="col">For Sale</th>
+			{% endif %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in apartments %}
+		<tr>
+			<th scope="row">{{item.getAddress}}</th>
+			<td>{{item.getPrice}}</td>
+			<td>{{item.getArea}}</td>
+			<td>{{item.getBalcony}}</td>
+			{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+			<td>{{item.getForSale}}</td>
+			<td>
+				<a class="btn btn-primary" href="/property/edit/Apartment/{{item.id}}">Edit</a>
+			</td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endif %}
 
-	{% if condos|length != 0 %}
-		<h2>Condos</h2>
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">Adress</th>
-					<th scope="col">Price</th>
-					<th scope="col">Area</th>
-					<th scope="col">Balcony</th>
-					{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
-						<th scope="col">For Sale</th>
-					{% endif %}
-				</tr>
-			</thead>
-			<tbody>
-				{% for item in condos %}
-					<tr>
-						<th scope="row">{{item.getAddress}}</th>
-						<td>{{item.getPrice}}</td>
-						<td>{{item.getArea}}</td>
-						<td>{{item.getBalcony}}</td>
-						{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
-							<td>{{item.getForSale}}</td>
-							<td>
-								<a class="btn btn-primary" href="/property/edit/Condo/{{item.id}}">Edit</a>
-							</td>
-						{% endif %}
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	{% endif %}
+{% if condos|length != 0 %}
+<h2>Condos</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Adress</th>
+			<th scope="col">Price</th>
+			<th scope="col">Area</th>
+			<th scope="col">Balcony</th>
+			{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+			<th scope="col">For Sale</th>
+			{% endif %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in condos %}
+		<tr>
+			<th scope="row">{{item.getAddress}}</th>
+			<td>{{item.getPrice}}</td>
+			<td>{{item.getArea}}</td>
+			<td>{{item.getBalcony}}</td>
+			{% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+			<td>{{item.getForSale}}</td>
+			<td>
+				<a class="btn btn-primary" href="/property/edit/Condo/{{item.id}}">Edit</a>
+			</td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endif %}
 
 {% endblock %}
