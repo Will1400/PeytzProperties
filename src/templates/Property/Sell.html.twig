@@ -13,4 +13,26 @@
 {% if form is defined %}
 {{ form(form) }}
 {% endif %}
+
+<script>
+	function SaveData() {
+		localStorage.setItem("address", document.getElementById("property_Address").value);
+		localStorage.setItem("price", document.getElementById("property_price").value);
+		localStorage.setItem("area", document.getElementById("property_area").value);
+		localStorage.setItem("forSale", document.getElementById("property_forSale").value);
+	}
+
+	document.addEventListener("DOMContentLoaded", function () {
+			LoadData();
+	});
+
+	function LoadData() {
+		if (localStorage.length > 0){
+			document.querySelector("#property_Address").value = localStorage.getItem("address");
+			document.querySelector("#property_price").value = localStorage.getItem("price");
+			document.querySelector("#property_area").value = localStorage.getItem("area");
+			document.querySelector("#property_forSale").value = localStorage.getItem("forSale");
+		}
+	}
+</script>
 {% endblock %}
