@@ -9,19 +9,21 @@
 			<li class="nav-item">
 				<a {% if app.request.attributes.get('_route') starts with 'lucky_number' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/lucky/number">Lucky Number</a>
 			</li>
-			<li class="nav-item">
-				<a {% if app.request.attributes.get('_route') starts with 'sell_property' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/sell/property">Sell Property</a>
-			</li>
-		</ul>
-		<div class="nav item vw-25 navbar-nav">
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-				<p class="text-light nav-link">Hi
-					{{ app.user.username }}</p>
-				<a {% if app.request.attributes.get('_route') starts with 'profile' %} class="nav-link active" {% else %} class="nav-link disabled" {% endif %} href="/profile">Profile</a>
-				{%else%}
-				<a {% if app.request.attributes.get('_route') starts with 'login' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/login">Login</a>
-				
+				<li class="nav-item">
+					<a {% if app.request.attributes.get('_route') starts with 'sell_property' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/property/sell">Sell Property</a>
+				</li>
 				{%endif%}
+			</ul>
+			<div class="nav item vw-25 navbar-nav">
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<p class="text-light nav-link">Hi
+						{{ app.user.username }}</p>
+					<a {% if app.request.attributes.get('_route') starts with 'profile' %} class="nav-link active" {% else %} class="nav-link disabled" {% endif %} href="/profile">Profile</a>
+					{%else%}
+					<a {% if app.request.attributes.get('_route') starts with 'login' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="/login">Login</a>
+
+					{%endif%}
+				</div>
 			</div>
-		</div>
-	</nav>
+		</nav>

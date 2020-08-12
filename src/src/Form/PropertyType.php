@@ -26,7 +26,7 @@ class PropertyType extends AbstractType
 
         $builder
             ->add("forSale", ChoiceType::class, ["choices" => ["No" => 0, "Yes" => 1]])
-            ->add("edit", SubmitType::class, ["label" => "Edit"]);
+            ->add("edit", SubmitType::class, ["label" => "Submit"]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

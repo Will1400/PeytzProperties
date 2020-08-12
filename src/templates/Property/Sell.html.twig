@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block title %}Sell
+{% endblock %}
+
+{% block body %}
+
+	<a class="btn btn-primary" href="/property/sell/Villa">Villa</a>
+	<a class="btn btn-primary" href="/property/sell/Apartment">Apartment</a>
+    <a class="btn btn-primary" href="/property/sell/Condo">Condo</a>
+    
+
+	<p class="text-danger">{{ error }}</p>
+
+	{% if form is defined %}
+        {{ form(form) }}
+    {% endif %}
+
+{% endblock %}
