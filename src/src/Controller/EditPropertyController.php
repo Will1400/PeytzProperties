@@ -14,6 +14,7 @@ class EditPropertyController extends AbstractController
      */
     public function Index(Request $request, string $propertyType = "default", string $propertyId = "default")
     {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         if (!is_numeric($propertyId) && !in_array($propertyType, ["Villa", "Apartment", "Condo", false])) {
             return $this->render("Property/Edit.html.twig", ["error" => "Property not found"]);
         }
@@ -34,6 +35,6 @@ class EditPropertyController extends AbstractController
                 return $this->redirect($this->generateUrl("home"));
             }
         }
-        return $this->render("Property/Edit.html.twig", ["form" => $form->createView(), "error" => ""]);
+        return $this->render("Property/Edit.html.twig", ["form" => $form->createView(), "error" => "", "propertyType" => $propertyType, "propertyId" => $propertyId]);
     }
 }
